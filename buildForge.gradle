@@ -1,0 +1,75 @@
+/**
+ * This file is part of Obsidian Client.
+ * Copyright (C) 2022  Alexander Richter
+ *
+ * Obsidian Client is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Obsidian Client is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Obsidian Client.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+buildscript {
+    repositories {
+        maven {
+            name = "Minecraft Forge"
+            url = "https://maven.minecraftforge.net"
+        }
+    }
+
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "net.minecraftforge.gradle.forge"
+
+version = "${project.minecraftVersion}-${project.modVersion}"
+group = "com.obsidianclient"
+archivesBaseName = "ObsidianClient"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = "UTF-8"
+
+minecraft {
+    version = "${project.minecraftVersion}-${project.forgeVersion}"
+    runDir = "run"
+
+    clientJvmArgs = ["-Dfml.coreMods.load=com.obsidianclient.launch.ForgeLoader",
+                     "-Dobsidianclient.devmode=true"]
+
+    mappings = "stable_22"
+    //makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    
+    //Replace placeholders in source code:
+    replace("@MOD_ID@": project.modId,
+            "@MOD_NAME@": project.modName,
+            "@MOD_VERSION@": project.modVersion,
+            "@MINECRAFT_VERSION@": project.minecraftVersion,
+            "@FORGE_VERSION@": project.forgeVersion)
+    replaceIn("ObsidianClient.java")
+}
+
+repositories {
+
+}
+
+dependencies {
+
+}
+
+jar {
+    manifest {
+        attributes "FMLCorePlugin": "com.obsidianclient.launch.ForgeLoader"
+        attributes "ModSide": "CLIENT"
+    }
+}
