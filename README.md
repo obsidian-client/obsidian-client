@@ -1,8 +1,10 @@
-# Obsidian Client
+##
+
+<div align="center"><img src="https://archive.obsidian-client.com/res/logo.png" alt="Obsidian Client Logo" title="Obsidian Client" width="770" height="168"/></div>
 
 ## Initial Setup
 
-Before you can start doing anything with the Obsidian Client source,
+Before you can start doing anything with the Obsidian Client source code,
 you have to run one of these commands to initialize ForgeGradle:
 
  - `./gradlew setupDecompWorkspace` For normal development environments, gives you nice deobfuscated Minecraft source to work with.
@@ -52,7 +54,7 @@ Both commands will download all dependencies, compile everything and run the gam
 
 ## Contributing
 
-Feel free to contribute to this project by opening a pull request under the following rules:
+Feel free to contribute to this project by opening a pull request under the following rul
 
  1. Write clean and organised code with Javadoc documentation.
 
