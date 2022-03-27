@@ -157,29 +157,25 @@ public class FileUtil {
 		File licenseFile = new File(folder, "LICENSE");
 		File thirdPartyFile = new File(folder, "THIRD_PARTY");
 
-		if (!licenseFile.exists() || !thirdPartyFile.exists()) {
+		//Creating Streams pointing to the target files:
+		InputStream licenseStream = FileUtil.class.getResourceAsStream("/LICENSE");
+		InputStream thirdPartyStream = FileUtil.class.getResourceAsStream("/THIRD_PARTY");
+		FileOutputStream licenseOutputStream = new FileOutputStream(licenseFile);
+		FileOutputStream thirdPartyOutputStream = new FileOutputStream(thirdPartyFile);
 
-			//Creating Streams pointing to the target files:
-			InputStream licenseStream = FileUtil.class.getResourceAsStream("/LICENSE");
-			InputStream thirdPartyStream = FileUtil.class.getResourceAsStream("/THIRD_PARTY");
-			FileOutputStream licenseOutputStream = new FileOutputStream(licenseFile);
-			FileOutputStream thirdPartyOutputStream = new FileOutputStream(thirdPartyFile);
-
-			//Copying the content from the InputStreams into the OutputStreams:
-			while (licenseStream.available() > 0) {
-				licenseOutputStream.write(licenseStream.read());
-			}
-			while (thirdPartyStream.available() > 0) {
-				thirdPartyOutputStream.write(thirdPartyStream.read());
-			}
-
-			//Closing the streams:
-			licenseStream.close();
-			thirdPartyStream.close();
-			licenseOutputStream.close();
-			thirdPartyOutputStream.close();
-
+		//Copying the content from the InputStreams into the OutputStreams:
+		while (licenseStream.available() > 0) {
+			licenseOutputStream.write(licenseStream.read());
 		}
+		while (thirdPartyStream.available() > 0) {
+			thirdPartyOutputStream.write(thirdPartyStream.read());
+		}
+
+		//Closing the streams:
+		licenseStream.close();
+		thirdPartyStream.close();
+		licenseOutputStream.close();
+		thirdPartyOutputStream.close();
 
 	}
 	
