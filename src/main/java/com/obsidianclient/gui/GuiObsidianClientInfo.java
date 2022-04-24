@@ -40,14 +40,17 @@ public class GuiObsidianClientInfo extends GuiScreen {
     public void initGui() {
 
         int btnWidth = 225;
-        int offset = 65;
+        int offset = 76;
         this.buttonList.add(new GuiButtonObsidianClient(0, this.width / 2 - btnWidth / 2 - 3, this.height / 2 + offset, btnWidth, 20, "Back"));
 
+        String btnCopyrightText = "Copyright Notice";
+        this.buttonList.add(new GuiButtonLabel(5, this.width / 2 - mc.fontRendererObj.getStringWidth(btnCopyrightText) / 2, this.height / 2 + 31 + 4, btnCopyrightText, ObsidianClient.BLUE_ACCENT_COLOR, false));
+
         String btnLicenseText = "Obsidian Client License";
-        this.buttonList.add(new GuiButtonLabel(10, this.width / 2 - mc.fontRendererObj.getStringWidth(btnLicenseText) / 2, this.height / 2 + 31 + 4, btnLicenseText, ObsidianClient.BLUE_ACCENT_COLOR, false));
+        this.buttonList.add(new GuiButtonLabel(10, this.width / 2 - mc.fontRendererObj.getStringWidth(btnLicenseText) / 2, this.height / 2 + 42 + 4, btnLicenseText, ObsidianClient.BLUE_ACCENT_COLOR, false));
 
         String btn3rdPartyText = "Third-party Software";
-        this.buttonList.add(new GuiButtonLabel(20, this.width / 2 - mc.fontRendererObj.getStringWidth(btn3rdPartyText) / 2, this.height / 2 + 42 + 4, btn3rdPartyText, ObsidianClient.BLUE_ACCENT_COLOR, false));
+        this.buttonList.add(new GuiButtonLabel(15, this.width / 2 - mc.fontRendererObj.getStringWidth(btn3rdPartyText) / 2, this.height / 2 + 53 + 4, btn3rdPartyText, ObsidianClient.BLUE_ACCENT_COLOR, false));
 
     }
 
@@ -56,11 +59,14 @@ public class GuiObsidianClientInfo extends GuiScreen {
         if (button.id == 0) {
             mc.displayGuiScreen(parentScreen);
 
+        } else if (button.id == 5) {
+            Desktop.getDesktop().open(new File(ObsidianClient.ROOT_CONFIG_FOLDER, "COPYRIGHT"));
+
         } else if (button.id == 10) {
             Desktop.getDesktop().open(new File(ObsidianClient.ROOT_CONFIG_FOLDER, "LICENSE"));
 
-        } else if (button.id == 20) {
-            Desktop.getDesktop().open(new File(ObsidianClient.ROOT_CONFIG_FOLDER, "THIRD_PARTY"));
+        } else if (button.id == 15) {
+            Desktop.getDesktop().open(new File(ObsidianClient.ROOT_CONFIG_FOLDER, "THIRD-PARTY"));
         }
     }
 
@@ -75,7 +81,7 @@ public class GuiObsidianClientInfo extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
         int cardWidth = 250;
-        int cardHeight = 200;
+        int cardHeight = 220;
         double cardX = this.width / 2.0D - cardWidth / 2.0D;
         double cardY = this.height / 2.0D - cardHeight / 2.0D;
 

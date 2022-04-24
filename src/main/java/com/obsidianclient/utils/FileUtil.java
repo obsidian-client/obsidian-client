@@ -154,16 +154,22 @@ public class FileUtil {
 	public static void extractLicenseAnd3rdParty(File folder) throws IOException {
 
 		//Creating File-Objects pointing to the target files:
+		File copyrightFile = new File(folder, "COPYRIGHT");
 		File licenseFile = new File(folder, "LICENSE");
-		File thirdPartyFile = new File(folder, "THIRD_PARTY");
+		File thirdPartyFile = new File(folder, "THIRD-PARTY");
 
 		//Creating Streams pointing to the target files:
+		InputStream copyrightStream = FileUtil.class.getResourceAsStream("/COPYRIGHT");
 		InputStream licenseStream = FileUtil.class.getResourceAsStream("/LICENSE");
-		InputStream thirdPartyStream = FileUtil.class.getResourceAsStream("/THIRD_PARTY");
+		InputStream thirdPartyStream = FileUtil.class.getResourceAsStream("/THIRD-PARTY");
+		FileOutputStream copyrightOutputStream = new FileOutputStream(copyrightFile);
 		FileOutputStream licenseOutputStream = new FileOutputStream(licenseFile);
 		FileOutputStream thirdPartyOutputStream = new FileOutputStream(thirdPartyFile);
 
 		//Copying the content from the InputStreams into the OutputStreams:
+		while (copyrightStream.available() > 0) {
+			copyrightOutputStream.write(copyrightStream.read());
+		}
 		while (licenseStream.available() > 0) {
 			licenseOutputStream.write(licenseStream.read());
 		}
@@ -172,8 +178,10 @@ public class FileUtil {
 		}
 
 		//Closing the streams:
+		copyrightStream.close();
 		licenseStream.close();
 		thirdPartyStream.close();
+		copyrightOutputStream.close();
 		licenseOutputStream.close();
 		thirdPartyOutputStream.close();
 

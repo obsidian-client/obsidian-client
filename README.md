@@ -54,7 +54,7 @@ Both commands will download all dependencies, compile everything and run the gam
 
 ## Contributing
 
-Feel free to contribute to this project by opening a pull request under the following rul
+Feel free to contribute to this project by opening a pull request under the following rules:
 
  1. Write clean and organised code with Javadoc documentation.
 
